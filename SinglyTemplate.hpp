@@ -16,23 +16,48 @@ public:
 
 	}
 
-	void add(T index, T data) {	// Inserts node at specified index
+	// Inserts node at specified index
+	void insert(T index, T data) {
+		Node<T> tmp = head;
+		Node<T> node = new Node<T>(data, NULL);
+
+		if (index == 0) {
+			node->next = head;
+			head = node;
+
+			return;
+		}
+
+		for (int i = 0; i <= index - 1; i++) {
+			tmp = tmp->next;
+		}
+
+		if (tmp != NULL) {
+			node->next = tmp->next;
+			tmp->next = node;
+		}
+
+		//delete tmp;
+		//delete node;
+	}
+
+	// Removes node at specified index
+	void remove(T index) {
 		
 	}
 
-	void remove(T index) {	// Removes node at specified index
+	// Returns node at specified index
+	Node<T> getNode(T index) {	
 
 	}
 
-	Node<T> getNode(T index) {	// Returns node at specified index
-
-	}
-
-	void update(T index, T data) {	// Updates node at specified index
+	// Updates node at specified index
+	void update(T index, T data) {	
 	
 	}
 
-	void reverse() {	// Reverses linked list
+	// Reverses linked list
+	void reverse() {
 
 	}
 };
