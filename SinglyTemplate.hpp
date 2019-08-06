@@ -19,10 +19,10 @@ public:
 	// Inserts node at specified index
 	void insert(T index, T data) {
 		Node<T> tmp = head;
-		Node<T> node = new Node<T>(data, NULL);
+		Node<T> node = new Node<T>();
 
 		if (index == 0) {
-			node->next = head;
+			node.setNext(head);
 			head = node;
 
 			return;
@@ -33,7 +33,7 @@ public:
 		}
 
 		if (tmp != NULL) {
-			node->next = tmp->next;
+			node.setNext(tmp->next);
 			tmp->next = node;
 		}
 

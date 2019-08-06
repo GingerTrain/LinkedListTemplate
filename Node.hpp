@@ -2,15 +2,16 @@
 
 template <class T>
 class Node {
+private:
 	T data; // Any data.
 	Node* next; // Pointer to next node.
 	Node* prev; // Pointer to previous node.
 
 public:
-	Node(T data, Node* next, Node* prev) {
-		data = data;
-		next = next;
-		prev = prev;
+	Node() {
+		data = NULL;
+		next = nullptr;
+		prev = nullptr;
 	}
 
 	~Node() {
@@ -18,7 +19,7 @@ public:
 	}
 
 	setData(T newData) {
-		this.data = newData;
+		this->data = newData;
 	}
 
 	getData() {
@@ -26,7 +27,7 @@ public:
 	}
 
 	setNext(T newNext) {
-		this.next = newNext;
+		this->next = newNext;
 	}
 
 	getNext() {
@@ -34,7 +35,7 @@ public:
 	}
 
 	setPrev(T newPrev) {
-		this.prev = newPrev;
+		this->prev = newPrev;
 	}
 
 	getPrev() {
