@@ -28,7 +28,7 @@ public:
 			return;
 		}
 
-		for (int i = 0; i <= index - 1; i++) {
+		for (int i = 0; i < index - 1; i++) {
 			tmp = tmp->next;
 		}
 
@@ -37,18 +37,33 @@ public:
 			tmp->next = node;
 		}
 
-		//delete tmp;
-		//delete node;
+		delete node;
 	}
 
 	// Removes node at specified index
 	void remove(T index) {
-		
+		Node<T> tmp = head;
+		Node<T> prev = NULL;
+
+		if (index == 0) {
+			head = head->next;
+
+			return;
+		}
+
+		for (int i = 0; i < index - 1; i++) {
+			prev = tmp;
+			tmp = tmp->next;
+		}
+
+		if (tmp != NULL) {
+			prev->next = tmp->next;
+		}
 	}
 
 	// Returns node at specified index
 	Node<T> getNode(T index) {	
-
+		
 	}
 
 	// Updates node at specified index
