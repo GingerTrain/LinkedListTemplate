@@ -71,6 +71,19 @@ public:
 	
 	}
 
+	// Returns the length of the linked list
+	int length() {
+		Node<T> tmp = head;
+		int length;
+
+		while (tmp != NULL) {
+			length++;
+			tmp = tmp->next;
+		}
+
+		return length;
+	}
+
 	// Reverses linked list
 	void reverse() {
 
