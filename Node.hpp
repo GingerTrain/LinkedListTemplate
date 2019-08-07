@@ -9,7 +9,7 @@ private:
 
 public:
 	Node() {
-		data = NULL;
+		data = 0;
 		next = nullptr;
 		prev = nullptr;
 	}
@@ -18,27 +18,27 @@ public:
 
 	}
 
-	setData(T newData) {
+	void setData(T newData) {
 		this->data = newData;
 	}
 
-	getData() {
+	T getData() {
 		return this->data;
 	}
 
-	setNext(T newNext) {
+	void setNext(T newNext) {
 		this->next = newNext;
 	}
 
-	getNext() {
+	T getNext() {
 		return this->next;
 	}
 
-	setPrev(T newPrev) {
+	void setPrev(T newPrev) {
 		this->prev = newPrev;
 	}
 
-	getPrev() {
+	T getPrev() {
 		return this->prev;
 	}
 };
