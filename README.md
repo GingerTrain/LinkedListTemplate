@@ -1,2 +1,2 @@
 # LinkedListTemplate
-Two simple templates for a Singly Linked List and a Doubly Linked List
+Three simple templates for a Singly Linked List, a Doubly Linked List, and a Node compatable with both.
