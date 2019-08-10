@@ -1,17 +1,16 @@
 #pragma once
+#include <memory>
 
 template <class T>
 class Node {
 private:
 	T data; // Any data.
-	Node* next; // Pointer to next node.
-	Node* prev; // Pointer to previous node.
+	std::unique_ptr<Node> next; // Pointer to next node.
+	std::unique_ptr<Node> prev; // Pointer to previous node.
 
 public:
-	Node() {
-		data = 0;
-		next = nullptr;
-		prev = nullptr;
+	Node() : data(0), next(nullptr), prev(nullptr) {
+	
 	}
 
 	~Node() {
@@ -26,19 +25,19 @@ public:
 		return this->data;
 	}
 
-	void setNext(T newNext) {
+	void setNext(std::unique_ptr<Node> newNext) {
 		this->next = newNext;
 	}
 
-	T getNext() {
+	std::unique_ptr<Node> getNext() {
 		return this->next;
 	}
 
-	void setPrev(T newPrev) {
+	void setPrev(std::unique_ptr<Node> newPrev) {
 		this->prev = newPrev;
 	}
 
-	T getPrev() {
+	std::unique_ptr<Node> getPrev() {
 		return this->prev;
 	}
 };
