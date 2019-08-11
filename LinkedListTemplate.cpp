@@ -6,21 +6,27 @@
 #include <memory>
 
 void nodeTests() {
+	std::cout << "--NODE TESTS--" << std::endl;;
+
 	Node<int>* node = new Node<int>();
 	Node<int>* node2 = new Node<int>();
 	Node<int>* node3 = new Node<int>();
-	std::unique_ptr<int> test1 = std::make_unique<int>(2);
+	std::shared_ptr<int> test1 = std::make_shared<int>(2);
 
+	std::cout << "Data: ";
 	node->setData(1);
-	std::cout << node->getData();
+	std::cout << node->getData() << std::endl;
 
-	node->setNext(std::make_unique<Node<int>>(node2));
-	std::cout << node->getNext();
+	std::cout << "Next: ";
+	node->setNext(std::make_shared<Node<int>>(*node2));
+	std::cout << node->getNext() << std::endl;
 
-	node->setPrev(std::make_unique<Node<int>>(node3));
-	std::cout << node->getPrev();
-
-	std::cout << node;
+	std::cout << "Prev: ";
+	node->setPrev(std::make_shared<Node<int>>(*node3));
+	std::cout << node->getPrev() << std::endl;
+	
+	std::cout << "Node: ";
+	std::cout << node << std::endl;;
 
 	delete node;
 	delete node2;
