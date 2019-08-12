@@ -27,33 +27,56 @@ public:
 		clean();
 	}
 
-	/*void setHead(std::shared_ptr<Node<T>> newHead) {
+	void setHead(std::shared_ptr<Node<T>> newHead) {
 		this->head = newHead;
-	}*/
+	}
 
 	std::shared_ptr<Node<T>> getHead() {
 		return this->head;
 	}
 
-	/*void setTail(std::shared_ptr<Node<T>> newTail) {
+	void setTail(std::shared_ptr<Node<T>> newTail) {
 		this->tail = newTail;
-	}*/
+	}
 
 	std::shared_ptr<Node<T>> getTail() {
 		return this->tail;
 	}
+
+	int getLength() {
+		return this->length;
+	}
+
+	// Returns node at specified index.
+	Node<T> getNode(T index) {
+
+	}
 	
 	// Creates node and inserts it at specified index.
-	void insert(T data, T index) {
+	void insert(T data, int index) {
 		std::shared_ptr<Node<T>> tmp = head;
 		Node<T>* node = new Node<T>();
 		node->setData(data);
 
 		this->length++;
 
+		if (index == getLength() || index < 0) {
+			std::cout << "Index: ";
+			std::cout << index;
+			std::cout << " Length: ";
+			std::cout << length << std::endl;
+
+			this->length--;
+
+			delete node;
+			
+			//throw std::out_of_range("Index not in range of list.");
+			return;
+		}
+
 		if (index == 0) {
 			node->setNext(head);
-			head = std::make_shared<Node<T>>(*node);
+			setHead(std::make_shared<Node<T>>(*node));
 
 			return;
 		}
@@ -65,6 +88,8 @@ public:
 		if (tmp != 0) {
 			node->setNext(tmp->getNext());
 			tmp->setNext(std::make_shared<Node<T>>(*node));
+
+			setTail(tmp->getNext());
 		}
 
 		delete node;
@@ -93,19 +118,9 @@ public:
 		}
 	}
 
-	// Returns node at specified index.
-	Node<T> getNode(T index) {	
-		
-	}
-
 	// Updates node at specified index.
-	void update(T data, T index) {	
-	
-	}
+	void update(T data, T index) {
 
-	// Returns the length of the linked list.
-	int getLength() {
-		return this->length;
 	}
 
 	// Reverses the linked list.
