@@ -52,10 +52,12 @@ void singlyTests() {
 
 	SinglyTemplate<int>* llist = new SinglyTemplate<int>();
 
-	llist->insert(0, 0);
+	llist->insert(1, 0);
 	llist->insert(2, 1);
 	llist->insert(3, 2);
 	llist->insert(4, 0);
+	//llist->insert(5, 5);	// Should fail
+	//llist->insert(5, -1);	// Should fail
 
 	llist->traverse();
 
