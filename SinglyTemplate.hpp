@@ -43,7 +43,7 @@ public:
 		return this->tail;
 	}
 	
-	// Creates node and inserts it at specified index
+	// Creates node and inserts it at specified index.
 	void insert(T data, T index) {
 		std::shared_ptr<Node<T>> tmp = head;
 		Node<T>* node = new Node<T>();
@@ -70,7 +70,7 @@ public:
 		delete node;
 	}
 
-	// Removes node at specified index
+	// Removes node at specified index.
 	void remove(T index) {
 		Node<T> tmp = head;
 		Node<T> prev = 0;
@@ -93,28 +93,28 @@ public:
 		}
 	}
 
-	// Returns node at specified index
+	// Returns node at specified index.
 	Node<T> getNode(T index) {	
 		
 	}
 
-	// Updates node at specified index
+	// Updates node at specified index.
 	void update(T data, T index) {	
 	
 	}
 
-	// Returns the length of the linked list
+	// Returns the length of the linked list.
 	int getLength() {
 		return this->length;
 	}
 
-	// Reverses linked list
+	// Reverses the linked list.
 	void reverse() {
 
 	}
 
-	// Test method TODO: Remove 
-	void test() {
+	// Traverse linked list and output each node and its data.
+	void traverse() {
 		std::shared_ptr<Node<T>> tmp = head;
 
 		while (tmp != 0) {

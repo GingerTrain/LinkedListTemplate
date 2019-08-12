@@ -57,7 +57,7 @@ void singlyTests() {
 	llist->insert(3, 2);
 	llist->insert(4, 0);
 
-	llist->test();
+	llist->traverse();
 
 	std::cout << "Head: ";
 	std::cout << llist->getHead() << std::endl;
