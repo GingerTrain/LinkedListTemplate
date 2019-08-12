@@ -1,40 +1,70 @@
 #pragma once
 #include "Node.hpp"
 
+#include <memory>
+#include <iostream>
+
 template <class T>
 class SinglyTemplate {
-	T *head; // First node in list.
-	T *tail; // Last node in list.
+private:
+	std::shared_ptr<Node<T>> head; // First node in list.
+	std::shared_ptr<Node<T>> tail; // Last node in list.
+	int length;	// Length of list.
 
 public:
-	SinglyTemplate() {
-		head = nullptr;
-		tail = nullptr;
+	SinglyTemplate() : head(nullptr), tail(nullptr), length(0) {
+	
+	}
+
+	// Iterate through list and remove nodes one by one.
+	void clean() {
+		while (head) {
+			head = head->getNext();
+		}
 	}
 
 	~SinglyTemplate() {
-
+		clean();
 	}
 
-	// Inserts node at specified index
-	void insert(T index, T data) {
-		Node<T> tmp = head;
-		Node<T> node = new Node<T>();
+	/*void setHead(std::shared_ptr<Node<T>> newHead) {
+		this->head = newHead;
+	}*/
+
+	std::shared_ptr<Node<T>> getHead() {
+		return this->head;
+	}
+
+	/*void setTail(std::shared_ptr<Node<T>> newTail) {
+		this->tail = newTail;
+	}*/
+
+	std::shared_ptr<Node<T>> getTail() {
+		return this->tail;
+	}
+	
+	// Creates node and inserts it at specified index
+	void insert(T data, T index) {
+		std::shared_ptr<Node<T>> tmp = head;
+		Node<T>* node = new Node<T>();
+		node->setData(data);
+
+		this->length++;
 
 		if (index == 0) {
-			node.setNext(head);
-			head = node;
+			node->setNext(head);
+			head = std::make_shared<Node<T>>(*node);
 
 			return;
 		}
-
+		
 		for (int i = 0; i < index - 1; i++) {
-			tmp = tmp->next;
+			tmp = tmp->getNext();
 		}
 
-		if (tmp != NULL) {
-			node.setNext(tmp->next);
-			tmp->next = node;
+		if (tmp != 0) {
+			node->setNext(tmp->getNext());
+			tmp->setNext(std::make_shared<Node<T>>(*node));
 		}
 
 		delete node;
@@ -43,7 +73,9 @@ public:
 	// Removes node at specified index
 	void remove(T index) {
 		Node<T> tmp = head;
-		Node<T> prev = NULL;
+		Node<T> prev = 0;
+
+		this->length--;
 
 		if (index == 0) {
 			head = head->next;
@@ -56,7 +88,7 @@ public:
 			tmp = tmp->next;
 		}
 
-		if (tmp != NULL) {
+		if (tmp != 0) {
 			prev->next = tmp->next;
 		}
 	}
@@ -67,25 +99,31 @@ public:
 	}
 
 	// Updates node at specified index
-	void update(T index, T data) {	
+	void update(T data, T index) {	
 	
 	}
 
 	// Returns the length of the linked list
-	int length() {
-		Node<T> tmp = head;
-		int length;
-
-		while (tmp != NULL) {
-			length++;
-			tmp = tmp->next;
-		}
-
-		return length;
+	int getLength() {
+		return this->length;
 	}
 
 	// Reverses linked list
 	void reverse() {
 
+	}
+
+	// Test method TODO: Remove 
+	void test() {
+		std::shared_ptr<Node<T>> tmp = head;
+
+		while (tmp != 0) {
+			std::cout << "Node: ";
+			std::cout << tmp << std::endl;
+			std::cout << "Node Data: ";
+			std::cout << tmp->getData() << std::endl;
+
+			tmp = tmp->getNext();
+		}
 	}
 };
