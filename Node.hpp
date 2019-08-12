@@ -4,7 +4,7 @@
 template <class T>
 class Node {
 private:
-	T data; // Any data.
+	T data; // Data stored in node.
 	std::shared_ptr<Node> next; // Pointer to next node.
 	std::shared_ptr<Node> prev; // Pointer to previous node.
 
@@ -21,7 +21,7 @@ public:
 		this->data = newData;
 	}
 
-	T getData() {
+	T getData() {	// Doesn't work with unique_ptr
 		return this->data;
 	}
 
