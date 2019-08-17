@@ -54,17 +54,14 @@ public:
 	
 	// Creates node and inserts it at specified index.
 	void insert(T data, int index) {
-		std::shared_ptr<Node<T>> tmp = head;
+		std::shared_ptr<Node<T>> tmp = getHead();
 		Node<T>* node = new Node<T>();
 		node->setData(data);
 
 		this->length++;
 
 		if (index == getLength() || index < 0) {
-			std::cout << "Index: ";
-			std::cout << index;
-			std::cout << " Length: ";
-			std::cout << length << std::endl;
+			std::cout << "Can't insert to non-existant index." <<std::endl;
 
 			this->length--;
 
@@ -75,7 +72,7 @@ public:
 		}
 
 		if (index == 0) {
-			node->setNext(head);
+			node->setNext(getHead());
 			setHead(std::make_shared<Node<T>>(*node));
 
 			return;
@@ -85,7 +82,7 @@ public:
 			tmp = tmp->getNext();
 		}
 
-		if (tmp != 0) {
+		if (tmp) {
 			node->setNext(tmp->getNext());
 			tmp->setNext(std::make_shared<Node<T>>(*node));
 
@@ -97,24 +94,32 @@ public:
 
 	// Removes node at specified index.
 	void remove(T index) {
-		Node<T> tmp = head;
-		Node<T> prev = 0;
+		std::shared_ptr<Node<T>> tmp = getHead();
+		std::shared_ptr<Node<T>> prev = 0;
 
-		this->length--;
+		if (index == getLength() || index < 0 || getLength() <= 0) {
+			std::cout << "Can't remove non-existant index." << std::endl;
 
-		if (index == 0) {
-			head = head->next;
+			//throw std::out_of_range("Index not in range of list.");
 
 			return;
 		}
 
-		for (int i = 0; i < index - 1; i++) {
-			prev = tmp;
-			tmp = tmp->next;
+		this->length--;
+
+		if (index == 0) {
+			setHead(head->getNext());
+
+			return;
 		}
 
-		if (tmp != 0) {
-			prev->next = tmp->next;
+		for (int i = 0; i < index; i++) {
+			prev = tmp;
+			tmp = tmp->getNext();
+		}
+
+		if (tmp) {
+			prev->setNext(tmp->getNext());
 		}
 	}
 
@@ -132,7 +137,7 @@ public:
 	void traverse() {
 		std::shared_ptr<Node<T>> tmp = head;
 
-		while (tmp != 0) {
+		while (tmp) {
 			std::cout << "Node: ";
 			std::cout << tmp << std::endl;
 			std::cout << "Node Data: ";
