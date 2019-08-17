@@ -137,7 +137,20 @@ public:
 
 	// Updates node at specified index.
 	void update(T data, T index) {
+		std::shared_ptr<Node<T>> tmp = getHead();
 
+		if (index == getLength() || index < 0) {
+			std::cout << "Can't update node at non-existant index." << std::endl;
+
+			//throw std::out_of_range("Index not in range of list.");
+			return;
+		}
+
+		for (int i = 0; i < index; i++) {
+			tmp = tmp->getNext();
+		}
+
+		tmp->setData(data);
 	}
 
 	// Reverses the linked list.
