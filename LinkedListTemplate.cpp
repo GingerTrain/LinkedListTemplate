@@ -56,8 +56,15 @@ void singlyTests() {
 	llist->insert(2, 1);
 	llist->insert(3, 2);
 	llist->insert(4, 0);
-	//llist->insert(5, 5);	// Should fail
-	//llist->insert(5, -1);	// Should fail
+	llist->insert(5, 5);	// Should fail
+	llist->insert(5, -1);	// Should fail
+
+	llist->traverse();
+
+	llist->remove(0);
+	llist->remove(3);	// Should fail
+	llist->remove(-1);	// Should fail
+	llist->remove(2);
 
 	llist->traverse();
 
