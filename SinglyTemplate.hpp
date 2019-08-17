@@ -95,12 +95,10 @@ public:
 			tmp = tmp->getNext();
 		}
 
-		if (tmp) {
-			node->setNext(tmp->getNext());
-			tmp->setNext(std::make_shared<Node<T>>(*node));
+		node->setNext(tmp->getNext());
+		tmp->setNext(std::make_shared<Node<T>>(*node));
 
-			setTail(tmp->getNext());
-		}
+		setTail(tmp->getNext());
 
 		delete node;
 	}
@@ -130,9 +128,12 @@ public:
 			tmp = tmp->getNext();
 		}
 
-		if (tmp) {
-			prev->setNext(tmp->getNext());
+		if (!tmp->getNext()) {
+			prev->setNext(nullptr);
+			setTail(prev);
 		}
+
+		prev->setNext(tmp->getNext());
 	}
 
 	// Updates node at specified index.
