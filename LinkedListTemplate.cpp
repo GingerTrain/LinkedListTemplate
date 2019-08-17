@@ -72,8 +72,16 @@ void singlyTests() {
 
 	llist->getNode(0)->getData();
 	llist->getNode(2); // Should fail
+	//llist->getNode(2)->getData();
 	llist->getNode(-1); // Should fail
 	llist->getNode(1)->getData();
+
+	llist->update(4, 0);
+	llist->update(2, 2); // Should fail
+	llist->update(2, -1); // Should fail
+	llist->update(5, 1);
+
+	llist->traverse();
 
 	std::cout << "Head: ";
 	std::cout << llist->getHead() << std::endl;
