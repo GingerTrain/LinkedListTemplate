@@ -48,8 +48,21 @@ public:
 	}
 
 	// Returns node at specified index.
-	Node<T> getNode(T index) {
+	std::shared_ptr<Node<T>> getNode(T index) {
+		std::shared_ptr<Node<T>> tmp = getHead();
 
+		if (index == getLength() || index < 0) {
+			std::cout << "Can't get node at non-existant index." << std::endl;
+
+			//throw std::out_of_range("Index not in range of list.");
+			return nullptr;
+		}
+
+		for (int i = 0; i < index; i++) {
+			tmp = tmp->getNext();
+		}
+
+		return tmp;
 	}
 	
 	// Creates node and inserts it at specified index.
@@ -101,7 +114,6 @@ public:
 			std::cout << "Can't remove non-existant index." << std::endl;
 
 			//throw std::out_of_range("Index not in range of list.");
-
 			return;
 		}
 
