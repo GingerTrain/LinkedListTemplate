@@ -13,6 +13,7 @@ void nodeTests() {
 	Node<int>* node3 = new Node<int>();
 	Node<std::shared_ptr<int>>* node4 = new Node<std::shared_ptr<int>>();
 	Node<char>* node5 = new Node<char>();
+	//Node<std::unique_ptr<int>>* node6 = new Node<std::unique_ptr<int>>();
 
 	std::cout << "Node Data: ";
 	node->setData(1);
@@ -20,6 +21,7 @@ void nodeTests() {
 	node3->setData(3);
 	node4->setData(std::make_shared<int>(42));
 	node5->setData('T');
+	//node6->setData(std::make_unique<int>(42));
 	std::cout << node->getData() << std::endl;
 
 	std::cout << "Next: ";
@@ -67,6 +69,11 @@ void singlyTests() {
 	llist->remove(2);
 
 	llist->traverse();
+
+	llist->getNode(0)->getData();
+	llist->getNode(2); // Should fail
+	llist->getNode(-1); // Should fail
+	llist->getNode(1)->getData();
 
 	std::cout << "Head: ";
 	std::cout << llist->getHead() << std::endl;
